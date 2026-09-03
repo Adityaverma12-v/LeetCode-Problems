@@ -4,13 +4,13 @@ public:
         if(i >= m || j>= n || obstacleGrid [i][j]== 1) return 0;
         if(i == m-1 &&  j== n-1) return 1;
         if(dp[i][j]!= -1){
-             return dp[i][j];
+            return  dp[i][j];
         }
-        // int right = solve( i, j+1 , m,n, obstacleGrid, dp);
-        // int down = solve( i+1, j , m,n, obstacleGrid, dp);
+        int right = solve( i, j+1 , m,n, obstacleGrid, dp);
+        int down = solve( i+1, j , m,n, obstacleGrid, dp);
         
-    //  dp[i][j]= right + down;
-     return dp[i][j]= solve( i, j+1 , m,n, obstacleGrid, dp)+ solve( i+1, j , m,n, obstacleGrid, dp);
+     dp[i][j]= right + down;
+     return dp[i][j];
     }
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         int m = obstacleGrid.size();

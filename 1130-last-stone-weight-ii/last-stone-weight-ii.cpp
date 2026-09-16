@@ -1,16 +1,16 @@
 class Solution {
 public:
- int function( int i, int currentSum, int target, vector<int> & stones, vector<vector<int >> & dp){
+ int solve( int i, int currentSum, int target, vector<int> & stones, vector<vector<int >> & dp){
     if(i ==stones .size() ){
          return currentSum;
     }
      if ( dp[i][currentSum] != -1){
          return dp[i][currentSum];
      }
-     int exclude = function (i+1, currentSum, target,stones, dp);
+     int exclude = solve (i+1, currentSum, target,stones, dp);
      int include =0;
      if (currentSum + stones[i] <= target) {
-        include = function ( i+1,  currentSum+stones[i],target,stones, dp);
+        include = solve ( i+1,  currentSum+stones[i],target,stones, dp);
      }
       return  dp[i][currentSum]= max( include , exclude );
  }
@@ -19,8 +19,7 @@ public:
          int target= totalSum/ 2;
          int n= stones .size();
          vector<vector<int>> dp(n, vector<int>(target + 1, -1));
-         int s1 = function(0, 0, target, stones, dp);
+         int s1 = solve(0, 0, target, stones, dp);
          return totalSum - 2 * s1;
     }
-    
 };
